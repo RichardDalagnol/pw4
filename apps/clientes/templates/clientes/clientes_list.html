@@ -8,22 +8,19 @@
     <tr>
         <th scope="col">Nome</th>
         <th scope="col">Cidade</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Data de Nascimento</th>
-
+        <th scope="col">Email</th>
+        <th scope="col">Data de nascimento</th>
     </tr>
 {% endblock lista__header %}
 
-
 {% block lista %}
-
     {% for cliente in object_list %}
-        <tr onclick="to('{{ cliente.get_absolute_url }}')">
-            <td>{{ cliente.nome }}</td>
-            <td>{{ cliente.cidade }}</td>
-            <td>{{ cliente.email }}</td>
-            <td>{{ cliente.data_nascimento|date:"d/m/Y" }}</td>
-        </tr>
+    <tr onclick="to('{{ cliente.get_absolute_url }}')">
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.cidade }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.data_nascimento|date:"d/m/Y" }}</td>
+    </tr>
     {% endfor %}
 
 {% endblock lista %}

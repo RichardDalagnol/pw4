@@ -1,7 +1,5 @@
 {% extends 'base/base_sistema.html' %}
-
-{%load crispy_forms_tags%}
-
+{% load crispy_forms_tags %}
 
 {% block title %}
 	Formulário
@@ -18,7 +16,7 @@
 	{% block form %}
 	<form action="" method="POST">
 	{% csrf_token %}
-		{{ form|crispy }}	
+		{{ form | crispy }}	
 		<button type="submit" class="btn btn-primary btn-block">
 			{% block form_button__text %}
 			{% if object %}Atualizar{% else %}Criar{% endif %}	

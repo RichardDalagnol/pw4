@@ -1,0 +1,88 @@
+{% extends 'base/base_sistema.html' %}
+
+{% block title %} Pedido - {{ object.cliente.nome }} {% endblock title %}
+
+{% block conteudo__header__text %}
+   Pedido # {{ object.pk }} - {{ object.cliente.nome}}
+{% endblock conteudo__header__text %}
+
+{% block conteudo__header_actions %}
+
+    {% if object.status == 'CRD' %}
+        <button class="btn btn-primary" onClick="confirmarAcao('Tem certeza que deseja fechar o pedido?', '{% url 'pedido__fechar' object.pk %}')">Fechar</button>
+        <a href="{{ object.get_add_item_url }}" class="btn btn-success">Adicionar Produto</a>
+        <a href="{{ object.get_update_url }}" class="btn btn-primary">Atualizar</a>
+        <a href="{{ object.get_delete_url }}" class="btn btn-danger">Excluir</a>
+
+    {% elif object.status == 'FCD' %}
+        <button class="btn btn-primary" onClick="confirmarAcao('Tem certeza que deseja marcar o pedido como enviado?', '{% url 'pedido__enviar' object.pk %}')">Marcar como enviado</button>
+    {% endif %}
+
+{% endblock conteudo__header_actions %}
+
+
+{% block conteudo %}
+
+<form action="" method="POST" id="id_form">{% csrf_token %}</form>
+    
+    <p><b>Data:</b> {{object.data|date:"d/m/Y"}}</p>
+    <p><b>Status:</b> {{object.get_status_display}}</p>
+    <p><b>Total:</b>R$ {{object.total}}</p>
+
+    <h3>Itens</h3>
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Unidade</th>
+                    <th>Valor Base</th>
+                    <th>Subtotal</th>
+                    {% if object.status == 'CRD' %}
+                        <th style="width: 15%;">Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                 {% for item in object.get_itens %}
+                 
+                 <tr>
+                    <td>{{ item.produto.nome }}</td>
+                    <td>{{ item.quantidade }}</td>
+                    <td>{{ item.produto.get_unidade_display }}</td>
+                    <td>R$ {{ item.valor_base }}</td>
+                    <td>{{ item.subtotal }}</td>
+                    {% if object.status == 'CRD' %}
+                    <td>
+                        <a href="{{ item.get_update_url }}" class="btn btn-primary">Atualizar</a>
+                        <a href="{{ item.get_delete_url }}" class="btn btn-danger">Excluir</a>
+                    </td>
+                    {% endif %}
+                    
+                 </tr>
+                 
+                 {% endfor %}
+                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>R$ {{ object.total }}</td>
+                    {% if object.status == 'CRD' %}
+                    <td></td>
+                    {% endif %}
+                 </tr>
+            </tbody>
+            </table>
+
+<script>
+    var form = document.getElementById("id_form");
+    function confirmarAcao(mensagem, url){
+        if(confirm(mensagem)){
+            form.action = url;
+            form.submit();
+        }
+    }
+</script>
+
+{% endblock conteudo %}

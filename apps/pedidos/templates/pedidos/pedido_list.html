@@ -1,0 +1,41 @@
+{% extends 'base/base_list.html' %}
+
+{% block list_title__model_name %}Pedidos{% endblock list_title__model_name %}
+{% block conteudo__header__text %}Pedidos{% endblock conteudo__header__text %}
+{% block botao_add__url %}{% url 'pedido__cria' %}{% endblock botao_add__url %}
+
+
+{% block before_table %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if CRIADO %}active{% endif %}" href="{% url 'pedido__list' %}">Criados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if FECHADO %}active{% endif %}" href="{% url 'pedido__list__fechado' %}">Fechados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if ENVIADO %}active{% endif %}" href="{% url 'pedido__list__enviado' %}">Enviados</a>
+        </li>
+    </ul>
+{% endblock before_table %}
+
+
+
+{% block lista__header %}
+    <tr>
+        <th scope="col">Cliente</th>
+        <th scope="col">Data</th>
+        <th scope="col">Total</th>
+    </tr>
+{% endblock lista__header %}
+
+{% block lista %}
+    {% for pedido in object_list %}
+    <tr onclick="to('{{ pedido.get_absolute_url }}')">
+        <td>{{ pedido.cliente.nome }}</td>
+        <td>{{ pedido.data|date:"d/m/Y" }}</td>
+        <td>R$ {{ pedido.total }}</td>
+    </tr>
+    {% endfor %}
+
+{% endblock lista %}

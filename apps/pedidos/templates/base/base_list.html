@@ -3,28 +3,49 @@
 
 {% block title %}Listagem de {% block list_title__model_name %}{% endblock list_title__model_name %}{% endblock title %}
 
-
-
-{% block conteudo__header__actions %}
-<a href="{% block botao_add__url %}{% endblock botao_add__url %}" class="btn btn-primary">Adicionar</a>
-{% endblock conteudo__header__actions %}
-
+{% block conteudo__header_actions %}
+    <a href="{% block botao_add__url %}{% endblock botao_add__url %}" class="btn btn-primary">Adicionar</a>
+{% endblock conteudo__header_actions %}
 
 {% block conteudo %}
+
+    {% block before_table %}
+    {% endblock before_table %}
 
     <div class="row">
         <div class="col">
             <table class="table table-hover">
-                <thead>
+            <thead>
                 {% block lista__header %}{% endblock lista__header %}
-                </thead>
-
-                <tbody>
-                {% block lista %}
-                {% endblock lista %}
-                </tbody>
+            </thead>
+            <tbody>
+                 {% block lista %}{% endblock lista %}
+            </tbody>
             </table>
         </div>
-    </div>
+     </div>
+
+     {% block paginacao %}
+        {% if is_paginated %}
+                <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number}}" tabindex="-1"> < </a>
+                    </li>
+                {% endif %}                
+                    {% for i in page_obj.paginator.page_range %}
+                        <li class="page-item {% ifequal view.request.GET.page i|slugify  %}active{% endifequal %}">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number}}" tabindex="-1"> > </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+     {% endblock paginacao %}
 
 {% endblock conteudo %}

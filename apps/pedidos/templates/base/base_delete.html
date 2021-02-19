@@ -11,14 +11,14 @@
 {% block conteudo %}
     <form method="POST" action="">
         {% csrf_token %}
-
+        
         <p>
-        Tem certeza que deseja excluir o {% block model_name__text %}{% endblock model_name__text %} "{% block model %}{{ object.nome }}{% endblock model %}"
+            Tem certeza que deseja excluir o {% block model_name__text %}{% endblock model_name__text %} "{% block model %}{{ object.nome }}{% endblock model %}"
         </p>
     
         <div class="btn-group btn-block" role="group">
-        <a href="{{ object.get_absolute_url }}" class="btn btn-secondary">Cancelar</a>
-        <button type="submit" class="btn btn-primary">Confirmar</button>
+            <a href="{{ object.get_absolute_url }}" class="btn btn-secondary btn-sm">Cancelar</a>
+            <button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
         </div>
     </form>
 

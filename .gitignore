@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,python,django
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,python,django
+# Created by https://www.toptal.com/developers/gitignore/api/django,python,linux,windows,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,python,linux,windows,macos
 
 ### Django ###
 *.log
@@ -150,6 +150,21 @@ dmypy.json
 # profiling data
 .prof
 
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
 ### macOS ###
 # General
 .DS_Store
@@ -266,4 +281,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,python,django
+# End of https://www.toptal.com/developers/gitignore/api/django,python,linux,windows,macos

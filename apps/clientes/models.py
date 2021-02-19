@@ -32,4 +32,4 @@ class Cliente(models.Model):
 	    return reverse("cliente__atualiza", kwargs={"pk":self.pk})
  
     def get_delete_url(self):
-	    return reverse("cliente__delete", kwargs={"pk":self.pk})
+    	return reverse("cliente__delete", kwargs={"pk":self.pk})
