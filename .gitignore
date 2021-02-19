@@ -7,7 +7,6 @@
 *.pot
 *.pyc
 __pycache__/
-local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
@@ -131,7 +130,6 @@ pythonenv*
 .spyproject
 
 # Rope project settings
-.ropeproject
 
 # mkdocs documentation
 /site
@@ -240,10 +238,6 @@ Temporary Items
 # SageMath parsed files
 
 # Environments
-
-# Spyder project settings
-
-# Rope project settings
 
 # mkdocs documentation
 
