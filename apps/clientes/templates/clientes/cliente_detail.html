@@ -1,0 +1,22 @@
+{% extends 'base/base_sistema.html' %}
+
+
+{% block title %} Cliente - {{ object.nome }} {% endblock title %}
+
+{% block conteudo__header__text %}
+{{object.nome}}
+{% endblock conteudo__header__text %}
+
+{% block conteudo__header__actions %}
+<a href="{{ object.get_update_url }}" class="btn btn-primary">Atualizar</a>
+<a href="{{ object.get_delete_url }}" class="btn btn-danger">Excluir</a>
+{% endblock conteudo__header__actions %}
+
+{% block conteudo %}
+
+    <p><b>CPF:</b>{{object.cpf}}</p>
+    <p><b>Email:</b>{{object.email}}</p>
+
+{% endblock conteudo %}
+
+

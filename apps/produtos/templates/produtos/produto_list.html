@@ -1,0 +1,30 @@
+{% extends 'base/base_list.html' %}
+
+{% block list_title__model_name %}Produtos{% endblock list_title__model_name %}
+
+{% block conteudo__header__text %}Produtos{% endblock conteudo__header__text %}
+
+{% block botao_add__url %}{% url 'produto__cria' %}{% endblock botao_add__url %}
+
+
+
+{% block lista__header %}
+    <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Valor</thproduto
+    </tr>
+{% endblock lista__header %}
+
+
+{% block lista %}
+
+    {% for produto in object_list %}
+        <tr onclick="to('{{ produto.get_absolute_url }}')">
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.categoria }}</td>
+            <td>{{ produto.valor }}</td>
+        </tr>
+    {% endfor %}
+
+{% endblock lista %}

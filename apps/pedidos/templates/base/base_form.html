@@ -1,0 +1,30 @@
+{% extends 'base/base_sistema.html' %}
+
+{%load crispy_forms_tags%}
+
+
+{% block title %}
+	Formulário
+	{% block form__name %}{% endblock form__name %}
+{% endblock title %}
+
+{% block conteudo %}
+	
+	<h1>
+		{% if object %}Atualizar{% else %}Criar{% endif %}
+		{% block form__header %}{% endblock form__header %}
+	</h1>
+
+	{% block form %}
+	<form action="" method="POST">
+	{% csrf_token %}
+		{{ form|crispy }}	
+		<button type="submit" class="btn btn-primary btn-block">
+			{% block form_button__text %}
+			{% if object %}Atualizar{% else %}Criar{% endif %}	
+			{% endblock form_button__text %}
+		</button>
+	</form>
+	{% endblock form %}
+
+{% endblock conteudo %}

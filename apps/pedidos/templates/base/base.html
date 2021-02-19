@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content"width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'contrib/jquery/jquery.slim.min.js' %}">
+    <link rel="stylesheet" href="{% static 'contrib/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Pedidos - {% block title %} {% endblock title %}</title>
+</head>
+<body>
+    {% block body %}
+
+    {% endblock body %}
+
+    <script src="{% static 'contrib/jquery/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'contrib/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'contrib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script>
+    function to(url){
+    location.href = url;
+    }
+    
+	var messages = [
+		{% for message in messages %}
+			'{{ message.message }}',
+		{% endfor %}
+	]
+
+	messages.map(mensagem => alert (mensagem));
+</script>
+</body>
+</html>
